@@ -1,0 +1,133 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background-color: #f4c531;
+}
+
+.container{
+    font-size: 16px;
+    background-color: #fff;
+    width: 90vw;
+    position: absolute;
+    max-width: 34em;
+    transform: translate(-50%, -50%);
+    padding: 3em;
+    top: 50%;
+    left: 50%;
+    border-radius: 0.6em;
+    box-shadow: 0 1.2em 2.4em rgba(111,85,0,0.25);
+}
+
+#optionsContainer{
+    text-align: center;
+}
+
+#optionsContainer div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1.2em 0 2.4em 0;
+}
+
+#optionsContainer button{
+    padding: 0.6em 1.2em;
+    border: 3px solid #000000;
+    background-color: #fff;
+    color: #000000;
+    border-radius: 0.3em;
+    text-transform: capitalize;
+}
+
+#optionsContainer button:disabled{
+    border: 3px solid #808080;
+    color: #808080;
+    background-color: #efefef;
+}
+
+#optionsContainer button.active{
+    background-color: #f4c531;
+    border: 3px solid #000000;
+    color: #000000;
+}
+
+.letterContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6em;
+}
+
+.letterContainer button{
+    height: 2.4em;
+    width: 2.4em;
+    border-radius: 0.3em;
+    background-color: #fff;
+}
+
+.newGamePopup{
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0.6em;
+}
+
+#userInputSection{
+    display: flex;
+    justify-content: center;
+    font-size: 1.8em;
+    margin: 0.6em 0 1.2em 0;
+}
+
+canvas{
+    display: block;
+    margin: auto;
+    border: 1px solid #000000;
+}
+
+.hide{
+    display: none;
+}
+
+#resultText h2{
+    font-size: 1.8em;
+    text-align: center;
+}
+
+#resultText p{
+    font-size: 1.25em;
+    margin: 1em 0 2em 0;
+}
+
+#resultText span{
+    font-weight: 600;
+}
+
+#newGameButton{
+    font-size: 1.25em;
+    padding: 0.5em 1em;
+    background-color: #f4c531;
+    border: 3px solid #000000;
+    color: #000000;
+    border-radius: 0.2em;
+}
+
+.winMsg{
+    color: #39d78d;
+}
+
+.loseMsg{
+    color: #fe5152;
+}
