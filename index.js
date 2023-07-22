@@ -120,9 +120,16 @@ const generateWord=(optionValue) =>{
     chosenWord=chosenWord.toUpperCase();
     
     //replacing all character of chosen word. /./ meaning first character, adding d means all characters
-    let displayItem = chosenWord.replace(/./g,'<span class="dashes">_</span>');
+    let displayItem = "";
+    for (let i = 0; i < chosenWord.length; i++) {
+        if (chosenWord[i] === " ") {
+            displayItem += "-";
+        } else {
+            displayItem += '<span class="dashes">_</span>';
+        }
+    }
+userInputSection.innerHTML = displayItem;
 
-    userInputSection.innerHTML=displayItem;
 }
 
 const initializer = ()=>{
@@ -198,9 +205,13 @@ const canvasCreator= ()=>{
     return{initialdrawing,head,body,leftArm,rightArm,leftLeg,rightLeg};
 };
 
-const drawMan=(count)=>{
-    let{head,body,leftArm,rightArm,leftLeg,rightLeg}=canvasCreator();
-    switch(count){
+const drawMan = (count) => {
+    let { head, body, leftArm, rightArm, leftLeg, rightLeg } = canvasCreator();
+    let context = canvas.getContext("2d");
+    context.clearRect(canvas.width - 50, 0, 40, 40);
+    context.font = "bold 10px Poppins";
+    context.fillText(`(${count}/6)`, canvas.width - 40, 20);
+    switch (count) {
         case 1:
             head();
             break;
@@ -222,10 +233,12 @@ const drawMan=(count)=>{
         default:
             break;
     }
-}
+};
+
 
 const handleLetterClick = (button) => {
-    let charArray = chosenWord.split("");
+    let thisArray = chosenWord.split("");
+    let charArray = thisArray.filter(char => char !== " ");
     let dashes = document.getElementsByClassName("dashes");
     if (charArray.includes(button.innerText)) {
         // code to handle correct guesses
