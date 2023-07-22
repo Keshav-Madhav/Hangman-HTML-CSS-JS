@@ -154,6 +154,18 @@ const initializer = ()=>{
     displayOptions();
     let {initialdrawing}=canvasCreator();
     initialdrawing();
+
+    window.addEventListener("keydown", (event) => {
+        if (event.key >= "a" && event.key <= "z") {
+            let letterButtons = document.querySelectorAll(".letters");
+            letterButtons.forEach((button) => {
+                if (button.innerText === event.key.toUpperCase()) {
+                    button.click();
+                }
+            });
+        }
+    });
+    
 };
 
 const canvasCreator= ()=>{
