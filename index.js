@@ -434,7 +434,9 @@ const drawMan = (count) => {
 
 
 const handleLetterClick = (button) => {
-    let charArray = chosenWord.split("");
+    let noSpaceWord = chosenWord.replace(/\s+/g, '');
+    let charArray = noSpaceWord.split("");
+
     let dashes = document.getElementsByClassName("dashes");
     if (charArray.includes(button.innerText)) {
         // code to handle correct guesses
