@@ -132,3 +132,17 @@ canvas{
 .loseMsg{
     color: #fe5152;
 }
+
+.options-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 45px;
+}
+
+.options-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.options {
+    flex: 0 0 auto;
+}

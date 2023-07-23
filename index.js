@@ -146,9 +146,37 @@ let options = {
             'dark matter', 
             'gravity', 
             'orbit',
+        ],
+    cars: ['Tesla',
+            'Mazda',
+            'BMW',
+            'Subaru',
+            'Porsche',
+            'Chevrolet',
+            'Honda',
+            'Nissan',
+            'Ford',
+            'Fiat',
+            'Audi',
+            'Mercedes Benz',
+            'Lexus',
+            'Toyota',
+            'Hyundai',
+            'Kia',
+            'Volkswagen',
+            'Jeep',
+            'Dodge',
+            'Horsepower',
+            'Torque',
+            'Transmission',
+            'Drivetrain',
+            'Suspension',
+            'Brakes',
+            'Fuel efficiency',
+            'Turbo',
+            'Engine',
+            'Steering wheel'
         ]
-
-
 };
 
 let winCount=0;
@@ -156,14 +184,62 @@ let count=0;
 let chosenWord="";
 
 //creating options
-const displayOptions=()=>{
-    optionsContainer.innerHTML+=`<h3>Please Select an Option</h3>`;
-    let buttonCon=document.createElement("div");
-    for(let value in options){
-        buttonCon.innerHTML+=`<button class="options" onclick="generateWord('${value}')"> ${value} </button>`;
+const displayOptions = () => {
+    optionsContainer.innerHTML += `<h3>Please Select an Option</h3>`;
+    let buttonCon = document.createElement("div");
+    buttonCon.classList.add("options-carousel");
+    for (let value in options) {
+        buttonCon.innerHTML += `<button class="options" onclick="generateWord('${value}')"> ${value} </button>`;
     }
     optionsContainer.appendChild(buttonCon);
+
+    // adding mouse and touch event listeners
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    buttonCon.addEventListener("mousedown", (event) => {
+        isDown = true;
+        startX = event.pageX - buttonCon.offsetLeft;
+        scrollLeft = buttonCon.scrollLeft;
+    });
+
+    buttonCon.addEventListener("mouseleave", () => {
+        isDown = false;
+    });
+
+    buttonCon.addEventListener("mouseup", () => {
+        isDown = false;
+    });
+
+    buttonCon.addEventListener("mousemove", (event) => {
+        if (!isDown) return;
+        event.preventDefault();
+        const x = event.pageX - buttonCon.offsetLeft;
+        const walk = (x - startX) ; // scroll-fast
+        buttonCon.scrollLeft = scrollLeft - walk;
+    });
+
+    buttonCon.addEventListener("touchstart", (event) => {
+        isDown = true;
+        startX = event.touches[0].pageX - buttonCon.offsetLeft;
+        scrollLeft = buttonCon.scrollLeft;
+    });
+
+    buttonCon.addEventListener("touchend", () => {
+        isDown = false;
+    });
+
+    buttonCon.addEventListener("touchmove", (event) => {
+        if (!isDown) return;
+        event.preventDefault();
+        const x = event.touches[0].pageX - buttonCon.offsetLeft;
+        const walk = (x - startX); // scroll-fast
+        buttonCon.scrollLeft = scrollLeft - walk;
+    });
 };
+
+
 
 const blocker=()=>{
     let optionsButtons=document.querySelectorAll(".options");
