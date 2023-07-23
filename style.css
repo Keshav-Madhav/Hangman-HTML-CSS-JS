@@ -31,7 +31,7 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 1.2em 0 2.4em 0;
+    margin: 1.8em 0 2.4em 0;
 }
 
 #optionsContainer button{
@@ -136,13 +136,27 @@ canvas{
 .options-carousel {
     display: flex;
     overflow-x: auto;
-    gap: 45px;
+    gap: 40px;
+    padding-bottom: 10px;
 }
 
 .options-carousel::-webkit-scrollbar {
-    display: none;
+    height: 1px;
+    background-color: #f4c531;
+    border-radius: 4px;
 }
 
+.options-carousel::-webkit-scrollbar-thumb {
+    background-color: #424242;
+    border-radius: 2px;
+}
 .options {
     flex: 0 0 auto;
 }
+
+#correctGuessCount {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+

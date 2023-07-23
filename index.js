@@ -165,23 +165,54 @@ let options = {
             'Kia',
             'Volkswagen',
             'Jeep',
-            'Dodge',
-            'Horsepower',
-            'Torque',
-            'Transmission',
-            'Drivetrain',
-            'Suspension',
-            'Brakes',
-            'Fuel efficiency',
-            'Turbo',
-            'Engine',
-            'Steering wheel'
+            'Dodge'
+        ],
+    sports: ['soccor',
+            'Cricket',
+            'Hockey',
+            'Tennis',
+            'Volleyball',
+            'Table tennis',
+            'Basketball',
+            'Baseball', 
+            'Rugby', 
+            'Golf',
+            'Football',
+            'Archery',
+            'Swimming',
+            'Athletics',
+            'Badminton',
+            'Boxing',
+            'Cycling',
+            'Fencing',
+            'Formula one',
+            'Gymnastics'
+        ],
+    brands: [
+            'Amazon',
+            'Apple',
+            'Google',
+            'Microsoft',
+            'Tencent',
+            'Facebook',
+            'Visa',
+            'McDonalds',
+            'Mastercard',
+            'Coca-Cola',
+            'Nike',
+            'Samsung',
+            'PepsiCo',
+            'Nestle',
+            'Intel',
+            'Disney',
+            'Coca cola'
         ]
 };
 
 let winCount=0;
 let count=0;
 let chosenWord="";
+let correctGuessCount = 0;
 
 //creating options
 const displayOptions = () => {
@@ -239,22 +270,21 @@ const displayOptions = () => {
     });
 };
 
-
-
-const blocker=()=>{
-    let optionsButtons=document.querySelectorAll(".options");
+const blocker = () => {
+    let optionsButtons = document.querySelectorAll(".options");
     let letterButtons = document.querySelectorAll(".letters");
 
-    optionsButtons.forEach(button=>{
-        button.disabled=true;
+    optionsButtons.forEach((button) => {
+        button.disabled = true;
     });
 
-    letterButtons.forEach(button =>{
+    letterButtons.forEach((button) => {
         button.disabled.true;
-    })
+    });
 
     newGameContainer.classList.remove("hide");
-}
+    document.getElementById("correctGuessCountPopup").innerText = `Correct guesses: ${correctGuessCount}`;
+};
 
 //Word generation
 const generateWord=(optionValue) =>{
@@ -354,7 +384,7 @@ const canvasCreator= ()=>{
     };
 
     const leftLeg= ()=>{
-        drawLine(70,50,50,110);
+        drawLine(70,80,50,110);
     };
 
     const rightLeg= ()=>{
@@ -404,8 +434,7 @@ const drawMan = (count) => {
 
 
 const handleLetterClick = (button) => {
-    let thisArray = chosenWord.split("");
-    let charArray = thisArray.filter(char => char !== " ");
+    let charArray = chosenWord.split("");
     let dashes = document.getElementsByClassName("dashes");
     if (charArray.includes(button.innerText)) {
         // code to handle correct guesses
@@ -415,17 +444,18 @@ const handleLetterClick = (button) => {
                 winCount += 1;
                 if (winCount == charArray.length) {
                     resultText.innerHTML = `<h2 class="winMsg">You Win!</h2> <p>The word was <span>${chosenWord}</span></p>`;
+                    correctGuessCount += 1;
+                    document.getElementById("correctGuessCount").innerText = `Correct guesses: ${correctGuessCount}`;
                     blocker();
                 }
             }
         });
-    } 
-    else {
+    } else {
         // code to handle incorrect guesses
         count++;
         drawMan(count);
-        if(count==6){
-            resultText.innerHTML=`<h2 class="loseMsg">You Lose! :(</h2> <p>The word was <span>${chosenWord}</span></p>`;
+        if (count == 6) {
+            resultText.innerHTML = `<h2 class="loseMsg">You Lose! :(</h2> <p>The word was <span>${chosenWord}</span></p>`;
             blocker();
         }
     }
